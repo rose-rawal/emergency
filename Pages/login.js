@@ -28,10 +28,12 @@ const Login = () => {
         </TouchableOpacity></>:
 
         <><Text style={styles.heading}>Emergency System</Text>
-    <Input name="Name" setLogData={setNewUser} logData={logData}/>
-    <Input name="Password" setLogData={setNewUser} logData={logData}/>
+    <Input name="Name" setLogData={setNewUser} logData={newUser}/>
+    <Input name="Password" setLogData={setNewUser} logData={newUser}/>
+    <Input name="Address" setLogData={setNewUser} logData={newUser}/>
+    <Input name="Number" setLogData={setNewUser} logData={newUser}/>
     <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text>Submit</Text>
+        <Text>SignUp</Text>
     </TouchableOpacity>
         <Text>Donot have Account?</Text>
         <TouchableOpacity onPress={()=>setSign(!sign)}>
