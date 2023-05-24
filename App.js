@@ -1,13 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet,TouchableWithoutFeedback, Text, TextInput, SafeAreaView,Image } from 'react-native';
 import Login from './Pages/login';
-
+import Context from './context/implement'
 export default function App() {
   return (
+    <Context>
     <SafeAreaView style={styles.container}>
     <Login/>
       
     </SafeAreaView>
+    </Context>
   );
 }
 

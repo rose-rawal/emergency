@@ -1,19 +1,43 @@
 import {Text,StyleSheet, View, Button, TouchableOpacity} from 'react-native'
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Input from '../snips/input'
+import context from '../context/maincontext';
 const Login = () => {
+  const {newUser,setNewUser}=useContext(context)
+  console.log(newUser)
      const [logData,setLogData]=useState({
         Name:'',
         Password:''
     })
+    const [sign,setSign]=useState(false)
+    const handleLogin=()=>{
+      // console.log(logData)
+    }
+    
   return (
     <View>
-    <Text style={styles.heading}>Emergency System</Text>
+    {sign?<><Text style={styles.heading}>Emergency System</Text>
     <Input name="Name" setLogData={setLogData} logData={logData}/>
     <Input name="Password" setLogData={setLogData} logData={logData}/>
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text>Submit</Text>
     </TouchableOpacity>
+        <Text>Donot have Account?</Text>
+        <TouchableOpacity onPress={()=>setSign(!sign)}>
+        <Text >SignUp</Text>
+        </TouchableOpacity></>:
+
+        <><Text style={styles.heading}>Emergency System</Text>
+    <Input name="Name" setLogData={setNewUser} logData={logData}/>
+    <Input name="Password" setLogData={setNewUser} logData={logData}/>
+    <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text>Submit</Text>
+    </TouchableOpacity>
+        <Text>Donot have Account?</Text>
+        <TouchableOpacity onPress={()=>setSign(!sign)}>
+        <Text >SignUp</Text>
+        </TouchableOpacity></>
+    }
     </View>
   )
 }
