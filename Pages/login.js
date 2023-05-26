@@ -1,9 +1,9 @@
-import {Text,StyleSheet, View, Button, TouchableOpacity} from 'react-native'
+import {Text,StyleSheet, View, Button, TouchableOpacity, FlatList, ScrollView} from 'react-native'
 import { useContext, useEffect, useState } from "react";
 import Input from '../snips/input'
 import context from '../context/maincontext';
-const Login = () => {
-  const {newUser,setNewUser}=useContext(context)
+const Login = ({navigation}) => {
+  const {newUser,setNewUser,signedUser,setSignedUser}=useContext(context)
   console.log(newUser)
      const [logData,setLogData]=useState({
         Name:'',
@@ -13,6 +13,22 @@ const Login = () => {
     const handleLogin=()=>{
       // console.log(logData)
     }
+
+    function signedupHandler()
+    {
+setSignedUser((prevItem)=> [...prevItem,newUser])
+
+    }
+
+    function loginHandler()
+    {
+      const found =signedUser.find(item=>item.Name===logData.Name);
+      if(found)
+      {
+       console.log("gg")
+navigation.navigate("Call");
+      }
+    }
     
   return (
     <View>
@@ -20,25 +36,27 @@ const Login = () => {
     <Input name="Name" setLogData={setLogData} logData={logData}/>
     <Input name="Password" setLogData={setLogData} logData={logData}/>
     <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text>Submit</Text>
+        <Button title='Submit' onPress={loginHandler}/>
     </TouchableOpacity>
         <Text>Donot have Account?</Text>
         <TouchableOpacity onPress={()=>setSign(!sign)}>
         <Text >SignUp</Text>
         </TouchableOpacity></>:
-
+   <ScrollView>
         <><Text style={styles.heading}>Emergency System</Text>
+
     <Input name="Name" setLogData={setNewUser} logData={newUser}/>
     <Input name="Password" setLogData={setNewUser} logData={newUser}/>
     <Input name="Address" setLogData={setNewUser} logData={newUser}/>
     <Input name="Number" setLogData={setNewUser} logData={newUser}/>
     <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text>SignUp</Text>
+        <Button title='SignUp' onPress={signedupHandler}/>
     </TouchableOpacity>
-        <Text>Donot have Account?</Text>
+        <Text>Have an Account?</Text>
         <TouchableOpacity onPress={()=>setSign(!sign)}>
-        <Text >SignUp</Text>
+        <Text >Login</Text>
         </TouchableOpacity></>
+        </ScrollView>
     }
     </View>
   )
