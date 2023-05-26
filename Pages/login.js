@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import Input from '../snips/input'
 import context from '../context/maincontext';
 import Call from './call';
+import Map from './map';
 const Login = () => {
   const {newUser,setNewUser,allUser,setAllUser}=useContext(context)
   // console.log(newUser)
@@ -13,7 +14,7 @@ const Login = () => {
     const [error,setError]=useState({
       message:''
     })
-    const [sign,setSign]=useState(false)
+    const [sign,setSign]=useState(true)
     const handleLogin=()=>{
       allUser.map(n=>{
         if(n.Name===logData.Name && n.Password===logData.Password){
@@ -43,7 +44,7 @@ const Login = () => {
     
   return (
     <View>
-    {error.message==="Logged In"?<Call/>:<>
+    {error.message==="Logged In"?<Map/>:<>
     {sign?<><Text style={styles.heading}>Emergency System</Text>
     
     <Input name="Name" setLogData={setLogData} logData={logData}/>

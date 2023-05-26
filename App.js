@@ -5,7 +5,7 @@ import Context from './context/implement'
 export default function App() {
   return (
     <Context>
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView >
     <Login/>
       
     </SafeAreaView>
