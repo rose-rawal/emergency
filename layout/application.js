@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity } from "react-native"
+import { Text, View, TouchableOpacity,StyleSheet } from "react-native"
 import {def} from './default.js'
 const Application = ({children}) => {
     
@@ -6,13 +6,29 @@ const Application = ({children}) => {
     <View>
         
         {children}
-        <View>
+        <View style={styles.nav}>
         {def.map((n)=>{
-            return(<TouchableOpacity><Text>{n.name}</Text></TouchableOpacity>)
+            return(<TouchableOpacity  key={n.name} style={styles.ele}><Text>{n.name}</Text></TouchableOpacity>)
         })}
     </View>
     </View>
   )
 }
+const styles=StyleSheet.create({
+  nav:{
+    backgroundColor:"red",
+    justifyContent:"space-around",
+    flexDirection:"row",
+    position:"absolute",
+    bottom:0 ,
+    flex:1,
+    width:"100%",
+    
+  },
+  ele:{
+    paddingVertical:20
+  }
+})
+
 
 export default Application

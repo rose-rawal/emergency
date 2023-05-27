@@ -1,14 +1,14 @@
 export const def=[
     {
-        name:'home',
+        name:'Home',
         img:'data',
     },
     {
-        name:'map',
+        name:'Map',
         img:'data3',
     },
     {
-        name:'statistics',
+        name:'Statistics',
         img:'data2',
     },
     {
