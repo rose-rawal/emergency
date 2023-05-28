@@ -1,27 +1,23 @@
 {
-  "name": "emergency",
+  "name": "back",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.4.0",
-    "@fortawesome/fontawesome-svg-core": "^6.4.0",
-    "@fortawesome/react-native-fontawesome": "^0.3.0",
-    "expo": "~48.0.15",
-    "expo-status-bar": "~1.4.4",
-    "react": "18.2.0",
-    "react-native": "0.71.7",
-    "react-native-maps": "^1.7.1",
-    "react-native-svg": "^13.9.0",
-    "react-native-vector-icons": "^9.2.0"
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.2.1",
+    "serverless-http": "^3.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
-  },
-  "private": true
+    "nodemon": "^2.0.22"
+  }
 }
