@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import ServerlessHttp from 'serverless-http'
 import dotenv from 'dotenv';
 import router from "./routes/index.js";
+import cors from 'cors';
 // import router from './routes'
 dotenv.config();
 const app=express();
@@ -13,9 +14,9 @@ mongoose.connect("mongodb://127.0.0.1:27017/userdata")
 .catch(()=>{
     console.log("error in db")
 })
-
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+app.use(cors({origin: true, credentials: true}))
 app.use('/',router)
 // app.use('/hello',router)
 app.post('/hello',(req,res)=>{

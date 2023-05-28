@@ -36,9 +36,11 @@ async function registerUser(req,res){
 router.post("/register",registerUser)
 
 async function login(req,res){
-    const {email}=await req.body;
+    const {email,password}=await req.body;
     const found=await userSchema.findOne({email})
-    if(found){
+    const pass=await decrypt(password,found.password)
+    console.log(pass)
+    if(found.email===email){
         return res.json({
             success:true,
             message: "user found",
@@ -51,5 +53,41 @@ async function login(req,res){
         
     })
 }
-router.get('/login',login)
+
+router.post('/login',login)
+
+const getAllUser=async(req,res)=>{
+    const data =await userSchema.find()
+    return res.json(data)
+}
+router.get('/all',getAllUser);
+
+const updateUser=async(req,res)=>{
+    const {name,email,address,age,phone}=req.body;
+ 
+    
+    const change=await userSchema.findOneAndUpdate({
+        _id:req.params.id
+    },{
+        name,email,address,age,phone
+    },{
+        new:true
+    })
+    return res.json({
+        change
+    })
+    
+}
+router.put('/update/:id',updateUser);
+
+const deleteUser=async(req,res)=>{
+    
+    const deleted=await userSchema.findOneAndDelete({
+        _id:req.params.id
+    })
+    return res.json({
+        deleted
+    })
+}
+router.delete('/delete/:id',deleteUser)
 export default router
