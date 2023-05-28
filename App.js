@@ -7,7 +7,7 @@ export default function App() {
     <Context>
     <SafeAreaView >
     <Login/>
-      
+    
     </SafeAreaView>
     </Context>
   );

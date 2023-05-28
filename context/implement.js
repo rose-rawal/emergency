@@ -5,13 +5,17 @@ const Context=({children})=>{
         Name:'',
         Password:'',
         Number:'',
-        Address:''
+        Address:'',
+        Email:'',
+        Age:''
     })
     const [allUser,setAllUser]=useState([{
         Name:'Rose',
         Password:'rose',
-        Number:'1234',
-        Address:'abcd'
+        Number:1234,
+        Address:'abcd',
+        Email:"rooserwl@gmail.com",
+        Age:21
     }])
     return(
         <context.Provider value={{newUser,setNewUser,allUser,setAllUser}}>
