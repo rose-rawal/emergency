@@ -55,6 +55,17 @@ async function login(req,res){
 }
 
 router.post('/login',login)
+const getOneUser=async(req,res)=>{
+    const id=req.params.id;
+    // console.log()
+    const user=await userSchema.findOne({
+        _id:id
+    })
+    res.json({
+        name:user.name,email:user.email,phone:user.phone,age:user.age,address:user.address
+    })
+}
+router.get('/all/:id',getOneUser)
 
 const getAllUser=async(req,res)=>{
     const data =await userSchema.find()
@@ -90,4 +101,5 @@ const deleteUser=async(req,res)=>{
     })
 }
 router.delete('/delete/:id',deleteUser)
+
 export default router
