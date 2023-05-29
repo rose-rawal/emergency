@@ -42,3 +42,15 @@ export const login=async({Email,Password})=>{
         console.log("err : ",err)
     }
 }
+export const getOneUser=async(_id)=>{
+    // console.log("id: ",_id)
+    try{
+        
+        const res=await axiosInstance.get(`/all/${_id}`);
+        // console.log("res ",res.data)
+        return res.data
+    }catch(e){
+        // console.log("hello")
+        console.log(e)
+    }
+}

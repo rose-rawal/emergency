@@ -9,6 +9,7 @@ import axios from 'axios';
 
 const Login = () => {
   const [data,setData]=useState('')
+  const [userData,setUserData]=useState('')
   useEffect(()=>{
     // setData("hello")
     const abc=async()=>{
@@ -24,10 +25,11 @@ const Login = () => {
   //   ab()
   // },[])
   
+  
   const {newUser,setNewUser,allUser,setAllUser}=useContext(context)
   // console.log(newUser)
      const [logData,setLogData]=useState({
-        Name:'',
+        Email:'',
         Password:''
     })
     const [error,setError]=useState({
@@ -43,9 +45,15 @@ const Login = () => {
         //   console.log(logData)}
         // })
         const success=await login(logData)
-        console.log(success.success)
+        console.log()
+        
         if(success.success){
-        setError({...error,message:"Logged In"})
+          // console.log(success)
+        setUserData(success.found._id)
+        // console.log("userdata", userData)
+          setError({...error,message:"Logged In"})
+          
+     
       }
     }
     const handleSignUp= ()=>{
@@ -74,7 +82,8 @@ const Login = () => {
     
   return (
     <View>
-    {error.message==="Logged In"?<Map/>:<>
+    
+    {error.message==="Logged In"?<Map userData={userData}/>:<>
     {sign?<><Text style={styles.heading}>Emergency System</Text>
     <Input name="Email" setLogData={setLogData} logData={logData}/>
     <Input name="Password" setLogData={setLogData} logData={logData}/>

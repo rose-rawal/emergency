@@ -4,7 +4,6 @@ const Application = ({children}) => {
     
   return (
     <View>
-        
         {children}
         <View style={styles.nav}>
         {def.map((n)=>{
