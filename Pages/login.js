@@ -26,26 +26,29 @@ setSignedUser((prevItem)=> [...prevItem,newUser])
       if(found)
       {
        console.log("gg")
-navigation.navigate("Call");
+navigation.navigate("Home");
       }
     }
     
   return (
-    <View>
+    <View style={styles.container}>
     {sign?<><Text style={styles.heading}>Emergency System</Text>
-    <Input name="Name" setLogData={setLogData} logData={logData}/>
-    <Input name="Password" setLogData={setLogData} logData={logData}/>
+    <View style={styles.con}>
+    <Input name="Name" setLogData={setLogData} logData={logData} style={styles.input}/>
+    <Input name="Password" setLogData={setLogData} logData={logData} />
     <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Button title='Submit' onPress={loginHandler}/>
     </TouchableOpacity>
         <Text>Donot have Account?</Text>
         <TouchableOpacity onPress={()=>setSign(!sign)}>
         <Text >SignUp</Text>
-        </TouchableOpacity></>:
+        </TouchableOpacity>
+    </View>
+    </>:
    <ScrollView>
         <><Text style={styles.heading}>Emergency System</Text>
 
-    <Input name="Name" setLogData={setNewUser} logData={newUser}/>
+    <Input name="Name" setLogData={setNewUser} logData={newUser} style={styles.input}/>
     <Input name="Password" setLogData={setNewUser} logData={newUser}/>
     <Input name="Address" setLogData={setNewUser} logData={newUser}/>
     <Input name="Number" setLogData={setNewUser} logData={newUser}/>
@@ -60,8 +63,14 @@ navigation.navigate("Call");
     }
     </View>
   )
-}
+};
 const styles=StyleSheet.create({
+  container:{
+    display:'flex',
+    flex:1,
+    backgroundColor:"yellow",
+    alignItems:"center"
+  },
     heading:{
     paddingTop:90,
     fontFamily:'monospace',
@@ -79,6 +88,11 @@ const styles=StyleSheet.create({
      elevation:10,
      borderRadius:3,
      marginTop:40
+  },
+  input:{
+    backgroundColor:"green",
+  },con: {
+    width:200
   }
 })
 

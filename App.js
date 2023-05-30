@@ -1,13 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet,TouchableWithoutFeedback, Text, TextInput, SafeAreaView,Image } from 'react-native';
+import {View, StyleSheet,TouchableWithoutFeedback, Text, TextInput, SafeAreaView,Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from './Pages/login';
-import Call from './Pages/call';
-import Map from './Pages/map';
 
 import Context from './context/implement'
-import Statistics from './Pages/statisics';
+
+import {def} from '../emergency/layouts/def'
 
 const Stack = createStackNavigator();
 
@@ -15,15 +13,22 @@ export default function App() {
   return (
     <NavigationContainer>
     <Context>
-       {/* <SafeAreaView style={styles.container}> */}
+       {/* <View style={styles.container}> */}
     <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen name="Login" component={Login}/>
+    {def.map((i,index)=>{
+     
+     return(<Stack.Screen key={index} name={`${i.name}`} component={i.comp}  />)
+    })
+  }
+  </Stack.Navigator>
+  { /* } 
+     <Stack.Screen name="Login" component={Login}  options={{headerShown:false}}/>
       <Stack.Screen name="Call" component={Call}/>
       <Stack.Screen name="Map" component={Map}/>
       <Stack.Screen name="Statistics" component={Statistics}/>
-      
-      </Stack.Navigator>  
-    {/* </SafeAreaView> */}
+      <Stack.Screen name="Application" component={Application}/>
+      </Stack.Navigator>   */}
+    {/* </View> */}
     </Context>
     </NavigationContainer>
   );

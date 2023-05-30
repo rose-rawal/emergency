@@ -1,6 +1,6 @@
 import React from 'react'
-import {StyleSheet, Pressable, Text, View,Image } from 'react-native'
-
+import {StyleSheet, Pressable, Text, View,Image, Linking, Platform, ScrollView } from 'react-native'
+import Application from "../layouts/application"
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -38,10 +38,21 @@ const styles = StyleSheet.create({
 
 
 const Call = () => {
+
+  const makePhoneCall = (number) => {
+    const phoneNumber = number; // Replace with the actual phone number
+    if (Platform.OS === 'android') {
+    Linking.openURL(phoneNumber);
+    }
+         
+          
+  };
   return (
 <>
-<View style={styles.container}>
-      <Pressable style={styles.pressable} android_ripple={{ color: 'red' }}>
+<Application>
+<ScrollView>
+{/* <View style={styles.container}> */}
+      <Pressable style={styles.pressable} android_ripple={{ color: 'red' }} onPress={()=>{makePhoneCall('tel:102')}}>
         <Image
           source={require('../assets/images/ambulance.png')}
           style={styles.image}
@@ -49,7 +60,7 @@ const Call = () => {
         <Text style={styles.text}>Ambulance</Text>
       </Pressable>
 
-      <Pressable style={styles.pressable} android_ripple={{ color: 'red' }}>
+      <Pressable style={styles.pressable} android_ripple={{ color: 'red' }} onPress={()=>{makePhoneCall('tel:101')}}>
         <Image
           source={require('../assets/images/fire.png')}
           style={styles.image}
@@ -57,7 +68,7 @@ const Call = () => {
         <Text style={styles.text}>Fire Brigade</Text>
       </Pressable>
 
-      <Pressable style={styles.pressable} android_ripple={{ color: 'red' }}>
+      <Pressable style={styles.pressable} android_ripple={{ color: 'red' }} onPress={()=>{makePhoneCall('tel:100')}}>
         <Image
           source={require('../assets/images/police.jpg')}
           style={styles.image}
@@ -65,14 +76,16 @@ const Call = () => {
         <Text style={styles.text}>Police Services</Text>
       </Pressable>
 
-      <Pressable style={styles.pressable} android_ripple={{ color: 'red' }}>
+      <Pressable style={styles.pressable} android_ripple={{ color: 'red' }} onPress={()=>{makePhoneCall('tel:6969 ')}}>
         <Image
           source={require('../assets/images/animals.png')}
           style={styles.image}
         />
         <Text style={styles.text}>Animal Rescue</Text>
       </Pressable>
-    </View>
+    {/* </View> */}
+    </ScrollView>
+    </Application>
 </>
 
     )
