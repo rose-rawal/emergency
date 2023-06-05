@@ -8,7 +8,7 @@ export const def=[
         img:'data3',
     },
     {
-        name:'Statistics',
+        name:'Stats',
         img:'data2',
     },
     {

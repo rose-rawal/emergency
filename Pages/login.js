@@ -6,6 +6,8 @@ import Call from './call';
 import Map from './map';
 import { getUser,addUser,login } from '../api/users';
 import axios from 'axios';
+import Statistics from './statistics';
+import Users from './user';
 
 const Login = () => {
   const [data,setData]=useState('')
@@ -26,15 +28,13 @@ const Login = () => {
   // },[])
   
   
-  const {newUser,setNewUser,allUser,setAllUser}=useContext(context)
+  const {newUser,setNewUser,allUser,setAllUser,page,setPage,error,setError}=useContext(context)
   // console.log(newUser)
      const [logData,setLogData]=useState({
         Email:'',
         Password:''
     })
-    const [error,setError]=useState({
-      message:''
-    })
+    
     const [sign,setSign]=useState(true)
     const handleLogin=async()=>{
       // allUser.map(n=>{
@@ -52,7 +52,7 @@ const Login = () => {
         setUserData(success.found._id)
         // console.log("userdata", userData)
           setError({...error,message:"Logged In"})
-          
+          setPage("Home")
      
       }
     }
@@ -83,8 +83,12 @@ const Login = () => {
   return (
     <View>
     
-    {error.message==="Logged In"?<Map userData={userData}/>:<>
-    {sign?<><Text style={styles.heading}>Emergency System</Text>
+    {error.message==="Logged In"?
+    page==="Home"?<Call/>:
+    page==="Map"?<Map userData={userData}/>:
+    page==="Stats"?<Statistics/>:
+    page==="User"?<Users/>:<Error/>
+    :<>{sign?<><Text style={styles.heading}>Emergency System</Text>
     <Input name="Email" setLogData={setLogData} logData={logData}/>
     <Input name="Password" setLogData={setLogData} logData={logData}/>
     <TouchableOpacity style={styles.button} onPress={handleLogin}>

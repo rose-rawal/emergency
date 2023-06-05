@@ -1,13 +1,15 @@
 import { Text, View, TouchableOpacity,StyleSheet } from "react-native"
 import {def} from './default.js'
+import { useContext } from "react"
+import context from "../context/maincontext.js"
 const Application = ({children}) => {
-    
+    const {page,setPage}=useContext(context)
   return (
     <View>
         {children}
         <View style={styles.nav}>
         {def.map((n)=>{
-            return(<TouchableOpacity  key={n.name} style={styles.ele}><Text>{n.name}</Text></TouchableOpacity>)
+            return(<TouchableOpacity  key={n.name} style={styles.ele} onPress={()=>{setPage(n.name)}}><Text>{n.name}</Text></TouchableOpacity>)
         })}
     </View>
     </View>

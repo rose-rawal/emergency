@@ -1,8 +1,9 @@
-import { View } from "react-native/types"
+import { View ,Text} from "react-native"
+import Application from "../layout/application"
 
 const Statistics = () => {
   return (
-    <View>Statistics</View>
+    <Application><Text>Statistics</Text></Application>
   )
 }
 
