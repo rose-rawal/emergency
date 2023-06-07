@@ -59,7 +59,7 @@ const Map = (userData) => {
   showsUserLocation={true}
 >
   <Marker
-  coordinate={pin} title={currentUser.name} description={currentUser.email}
+  coordinate={pin} title={currentUser.name} description={`${currentUser.email} requires emergency Sevice`}
     draggable={true}
     onDragStart={(e)=>{
       console.log("drag:" ,e)
@@ -72,7 +72,7 @@ const Map = (userData) => {
     ></Marker>
     <Circle
       center={pin}
-      radius={300}
+      radius={20}
     ></Circle>
 </MapView>
 

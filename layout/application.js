@@ -1,33 +1,46 @@
-import { Text, View, TouchableOpacity,StyleSheet } from "react-native"
+import { Text, View, TouchableOpacity,StyleSheet,Dimensions } from "react-native"
 import {def} from './default.js'
 import { useContext } from "react"
 import context from "../context/maincontext.js"
+const hei=Dimensions.get("window").height
+console.log(hei)
 const Application = ({children}) => {
+  
     const {page,setPage}=useContext(context)
   return (
     <View>
-        {children}
+        <View style={styles.child}>{children}</View>
         <View style={styles.nav}>
         {def.map((n)=>{
-            return(<TouchableOpacity  key={n.name} style={styles.ele} onPress={()=>{setPage(n.name)}}><Text>{n.name}</Text></TouchableOpacity>)
+            return(<TouchableOpacity  key={n.name} style={styles.ele} onPress={()=>{setPage(n.name)}}><Text style={styles.text}>{n.name}</Text></TouchableOpacity>)
         })}
     </View>
     </View>
   )
 }
 const styles=StyleSheet.create({
+  child:{
+   height:hei*0.92,
+   paddingTop:20
+  },
   nav:{
-    backgroundColor:"red",
+    backgroundColor:"black",
     justifyContent:"space-around",
     flexDirection:"row",
-    position:"absolute",
-    bottom:0 ,
-    flex:1,
+    
+    // height:"100%",
+    
     width:"100%",
     
   },
   ele:{
     paddingVertical:20
+  },
+  text:{
+    color:"white",
+    fontFamily:"Roboto",
+    fontWeight:"bold"
+    
   }
 })
 

@@ -9,9 +9,16 @@ const Context=({children})=>{
         Email:'',
         Age:''
     })
+    const [serverUser,setServerUser]=useState({
+        Name:'',
+        Password:'',
+        Number:'',
+        Email:''
+    })
     const [error,setError]=useState({
       message:''
     })
+    const [isServer,setIsServer]=useState(false)
     const [page,setPage]=useState('');
     const [allUser,setAllUser]=useState([{
         Name:'Rose',
@@ -22,7 +29,7 @@ const Context=({children})=>{
         Age:21
     }])
     return(
-        <context.Provider value={{newUser,setNewUser,allUser,setAllUser,page,setPage,error,setError}}>
+        <context.Provider value={{newUser,setNewUser,allUser,setAllUser,page,setPage,error,setError,isServer,setIsServer,serverUser,setServerUser}}>
             {children}
         </context.Provider>
     )
