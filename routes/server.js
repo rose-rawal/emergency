@@ -2,16 +2,17 @@ import {Router} from 'express'
 import userSchema from '../models/userSchema.js'
 import {decrypt} from '../utils/decrypt.js'
 import {encrypt} from '../utils/encrypt.js'
-const router = Router()
+import serverSchema from '../models/serverSchema.js'
+const serverrouter = Router()
 async function registerUser(req,res){
-    const {name,password,email,address,age,phone}=req.body
-    if(!name||!password||!email||!address||!age||!phone){
+    const {name,password,email,phone}=req.body
+    if(!name||!password||!email||!phone){
         return res.status(400).json({
             success:false,
             message:"missing Field"
         })
     }
-    const exist=await userSchema.exists({
+    const exist=await serverSchema.exists({
         email
     })
     if(exist){
@@ -21,8 +22,8 @@ async function registerUser(req,res){
             
         })
     }
-    const user=userSchema({
-        name,password:await encrypt(password),email,address,age,phone
+    const user=serverSchema({
+        name,password:await encrypt(password),email,phone
     })
     await user.save();
     const data=await encrypt(password);
@@ -33,17 +34,18 @@ async function registerUser(req,res){
     })
     
 }
-router.post("/register",registerUser)
+serverrouter.post("/register",registerUser)
 
 async function login(req,res){
     const {email,password}=await req.body;
+    console.log(email)
     if(!email || !password){
         return res.json({
             success:false,
         message: "Null Name or Password",
         })
     }
-    const found=await userSchema.findOne({email})
+    const found=await serverSchema.findOne({email})
     if(!found){
         return res.json({
             success:false,
@@ -67,7 +69,7 @@ async function login(req,res){
     })
 }
 
-router.post('/login',login)
+serverrouter.post('/login',login)
 const getOneUser=async(req,res)=>{
     const id=req.params.id;
     // console.log()
@@ -78,13 +80,13 @@ const getOneUser=async(req,res)=>{
         name:user.name,email:user.email,phone:user.phone,age:user.age,address:user.address
     })
 }
-router.get('/all/:id',getOneUser)
+serverrouter.get('/all/:id',getOneUser)
 
 const getAllUser=async(req,res)=>{
     const data =await userSchema.find()
     return res.json(data)
 }
-router.get('/all',getAllUser);
+serverrouter.get('/all',getAllUser);
 
 const updateUser=async(req,res)=>{
     const {name,email,address,age,phone}=req.body;
@@ -102,7 +104,7 @@ const updateUser=async(req,res)=>{
     })
     
 }
-router.put('/update/:id',updateUser);
+serverrouter.put('/update/:id',updateUser);
 
 const deleteUser=async(req,res)=>{
     
@@ -113,6 +115,6 @@ const deleteUser=async(req,res)=>{
         deleted
     })
 }
-router.delete('/delete/:id',deleteUser)
+serverrouter.delete('/delete/:id',deleteUser)
 
-export default router
+export default serverrouter
