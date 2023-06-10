@@ -1,12 +1,40 @@
-import { View ,Text} from "react-native"
+import { View ,Text, TouchableOpacity} from "react-native"
 import MapView, { Circle, Marker } from "react-native-maps"
 import def from '../layout/default'
 import Application from "../layout/application"
-import { useState,useEffect } from "react"
+import { useState,useEffect, useContext } from "react"
 import * as Location from 'expo-location';
 import { getOneUser } from "../api/users"
+import context from "../context/maincontext"
 const Map = (userData) => {
-  console.log("data req",userData)
+  const [isConnected, setIsConnected] = useState(socket.connected);
+  const [fooEvents, setFooEvents] = useState([]);
+  const {socket} =useContext(context)
+
+  useEffect(() => {
+    function onConnect() {
+      setIsConnected(true);
+    }
+
+    function onDisconnect() {
+      setIsConnected(false);
+    }
+
+    function onFooEvent(value) {
+      setFooEvents(previous => [...previous, value]);
+    }
+
+    socket.on('connect', onConnect);
+    socket.on('disconnect', onDisconnect);
+    socket.on('foo', onFooEvent);
+
+    return () => {
+      socket.off('connect', onConnect);
+      socket.off('disconnect', onDisconnect);
+      socket.off('foo', onFooEvent);
+    };
+  }, []);
+  // console.log("data req",userData)
   const [currentUser,setCurrentUser]=useState({})
   // console.log("data",userData)
   const [pin,setPin]=useState({
@@ -41,7 +69,9 @@ const Map = (userData) => {
       })
     })();
   }, []);
+  const handlePress=()=>{
 
+  }
 
   return (
     <Application>
@@ -77,6 +107,7 @@ const Map = (userData) => {
 </MapView>
 
 </View>
+<TouchableOpacity onPress={()=>{handlePress()}} style={{position:'absolute',right:10,bottom:20,backgroundColor:'black',paddingHorizontal:30,paddingVertical:10,borderRadius:20}}><Text style={{color:"white",fontSize:20}}>SOS</Text></TouchableOpacity>
 </Application>
   )
 }

@@ -55,7 +55,19 @@ const Login = () => {
           success=await loginServer(logData)
         }
         
-        if(success.success){
+        if(success.success && isServer){
+          // console.log(success)
+        setUserData(success.found._id)
+        // console.log("userdata", userData)
+          setError({...error,message:"Logged In"})
+          setPage("User")
+          setLogData({
+            Email:'',
+        Password:''
+          })
+
+      }
+      else if(success.success && !isServer){
           // console.log(success)
         setUserData(success.found._id)
         // console.log("userdata", userData)
@@ -122,7 +134,7 @@ const Login = () => {
     <>
     {error.message==="Logged In"?
     page==="Home"?<Call/>:
-    page==="Map"?<Map userData={userData}/>:
+    //page==="Map"?<Map userData={userData}/>:
     page==="Stats"?<Statistics/>:
     page==="User"?<Users/>:<Error/>
     :<>

@@ -1,9 +1,13 @@
 import { Text, View, TouchableOpacity,StyleSheet,Dimensions } from "react-native"
 import {def} from './default.js'
 import { useContext } from "react"
+
 import context from "../context/maincontext.js"
 const hei=Dimensions.get("window").height
-console.log(hei)
+
+
+
+
 const Application = ({children}) => {
   
     const {page,setPage}=useContext(context)

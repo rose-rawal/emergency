@@ -1,6 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import context from "./maincontext";
+import {io} from 'socket.io-client'
+import Constants from "expo-constants";
+const { manifest } = Constants;
+const uri = `http://${manifest.debuggerHost.split(':').shift()}:4000`;
 const Context=({children})=>{
+    // useEffect(()=>{
+
+        var socket=io(uri)
+    // },[])
     const [newUser,setNewUser]=useState({
         Name:'',
         Password:'',
@@ -29,7 +37,7 @@ const Context=({children})=>{
         Age:21
     }])
     return(
-        <context.Provider value={{newUser,setNewUser,allUser,setAllUser,page,setPage,error,setError,isServer,setIsServer,serverUser,setServerUser}}>
+        <context.Provider value={{newUser,setNewUser,allUser,setAllUser,page,setPage,error,setError,isServer,setIsServer,serverUser,setServerUser,socket}}>
             {children}
         </context.Provider>
     )
