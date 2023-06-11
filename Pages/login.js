@@ -164,12 +164,10 @@ const Login = () => {
         <TouchableOpacity onPress={()=>setSign(!sign)}>
         <Text >Login</Text>
         </TouchableOpacity></>
+        
         </ScrollView>
     }
-      <Text>Is Client?</Text>
-        <TouchableOpacity onPress={()=>setServer()}>
-        <Text >Click Here</Text>
-        </TouchableOpacity>
+      
     </>
     }</>
     //client page
@@ -178,7 +176,7 @@ const Login = () => {
     page==="Home"?<Call/>:
     page==="Map"?<Map userData={userData}/>:
     page==="Stats"?<Statistics/>:
-    page==="User"?<Users/>:<Error/>
+    page==="User"?<Users userData={userData}/>:<Error/>
     :<>{
    sign?<><Text style={styles.heading}>Emergency System</Text>
    {fals&&<Text style={{color:"red"}}>{fals}</Text>}
@@ -207,11 +205,12 @@ const Login = () => {
         <TouchableOpacity onPress={()=>setSign(!sign)}>
         <Text >Login</Text>
         </TouchableOpacity></>
-        </ScrollView>
-    }</>}<Text>Is Server?</Text>
+        <Text>Is Server?</Text>
         <TouchableOpacity onPress={()=>setServer()}>
         <Text >Click Here</Text>
-        </TouchableOpacity></>}
+        </TouchableOpacity>
+        </ScrollView>
+    }</>}</>}
         </ScrollView>
     </View>
   )

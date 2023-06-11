@@ -7,36 +7,38 @@ import * as Location from 'expo-location';
 import { getOneUser } from "../api/users"
 import context from "../context/maincontext"
 const Map = (userData) => {
-  const [isConnected, setIsConnected] = useState(socket.connected);
-  const [fooEvents, setFooEvents] = useState([]);
+  // const [isConnected, setIsConnected] = useState(socket.connected);
+  // const [fooEvents, setFooEvents] = useState([]);
   const {socket} =useContext(context)
 
-  useEffect(() => {
-    function onConnect() {
-      setIsConnected(true);
-    }
+  // useEffect(() => {
+  //   function onConnect() {
+  //     setIsConnected(true);
+  //   }
 
-    function onDisconnect() {
-      setIsConnected(false);
-    }
+  //   function onDisconnect() {
+  //     setIsConnected(false);
+  //   }
 
-    function onFooEvent(value) {
-      setFooEvents(previous => [...previous, value]);
-    }
+  //   function onFooEvent(value) {
+  //     setFooEvents(previous => [...previous, value]);
+  //   }
 
-    socket.on('connect', onConnect);
-    socket.on('disconnect', onDisconnect);
-    socket.on('foo', onFooEvent);
+  //   socket.on('connect', onConnect);
+  //   socket.on('disconnect', onDisconnect);
+  //   socket.on('foo', onFooEvent);
 
-    return () => {
-      socket.off('connect', onConnect);
-      socket.off('disconnect', onDisconnect);
-      socket.off('foo', onFooEvent);
-    };
-  }, []);
+  //   return () => {
+  //     socket.off('connect', onConnect);
+  //     socket.off('disconnect', onDisconnect);
+  //     socket.off('foo', onFooEvent);
+  //   };
+  // }, []);
   // console.log("data req",userData)
+  socket.on('hello',msg=>console.log(msg));
   const [currentUser,setCurrentUser]=useState({})
   // console.log("data",userData)
+  let location;
   const [pin,setPin]=useState({
     latitude: 37.78825,
     longitude: -122.4324
@@ -62,7 +64,7 @@ const Map = (userData) => {
         return;
       }
 
-      let location = await Location.getCurrentPositionAsync({});
+      location = await Location.getCurrentPositionAsync({});
       setPin({
         latitude:location.coords.latitude,
         longitude:location.coords.longitude
@@ -70,7 +72,7 @@ const Map = (userData) => {
     })();
   }, []);
   const handlePress=()=>{
-
+    socket.emit('hello',pin)
   }
 
   return (

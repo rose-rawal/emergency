@@ -24,7 +24,7 @@ const Application = ({children}) => {
 }
 const styles=StyleSheet.create({
   child:{
-   height:hei*0.92,
+   height:hei*0.95,
    paddingTop:20
   },
   nav:{

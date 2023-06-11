@@ -6,7 +6,7 @@ const { manifest } = Constants;
 const uri = `http://${manifest.debuggerHost.split(':').shift()}:4000`;
 const Context=({children})=>{
     // useEffect(()=>{
-
+    
         var socket=io(uri)
     // },[])
     const [newUser,setNewUser]=useState({
