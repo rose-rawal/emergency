@@ -34,8 +34,12 @@ export default ServerlessHttp(app)
 app.listen(5000,()=>{
     console.log("server on 5000")
 })
-io.on('connection',()=>{
+io.on('connection',(socket)=>{
     console.log("user is connected");
+    socket.on('hello',msg=>{
+        console.log(msg);
+        io.emit('hello',msg)
+    })
 })
 server.listen(4000,()=>{
     console.log("socket server at 4000")
