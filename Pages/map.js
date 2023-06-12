@@ -77,7 +77,7 @@ const Map = (userData) => {
 
   return (
     <Application>
-    <View>
+    <View style={{marginTop:-20}} >
     
     <MapView
     style={{width:"100%",height:"100%"}}
@@ -86,7 +86,7 @@ const Map = (userData) => {
     longitude: 85.332443,
     latitudeDelta: 0.0010,
     longitudeDelta: 0.0010,
-    
+
   }}
   showsUserLocation={true}
 >

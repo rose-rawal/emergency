@@ -20,11 +20,20 @@ const Input=({name,setLogData, logData})=>{
 const styles=StyleSheet.create({
     ti:{
         backgroundColor:"white",
+        
         height:40,
+        borderWidth:2,
+        borderColor:  '#4e0eff', 
+        fontWeight : '500',
+        fontSize: 18,        
+        paddingLeft :15,
     },
     te:{
         marginTop:20,
-        marginBottom:10
+        marginBottom:10,
+        color:'white',
+
+
     }
 })
 export default Input

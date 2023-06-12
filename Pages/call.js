@@ -7,15 +7,17 @@ const styles = StyleSheet.create({
     textAlign:"center",
     paddingBottom:30,
     paddingTop:20,
-    fontWeight:"bold"
+    fontWeight:"bold",
+    color:'white'
   },
     container: {
         flex: 1,
-        backgroundColor: '#F5F5F5',
+        
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-evenly',
         alignItems: 'center',
+        backgroundColor: '#001133'
       
     },
     pressable: {
@@ -23,12 +25,13 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
-    marginBottom: 10,
+    // padding: 10,
+    paddingBottom:10,
+    marginBottom: 30,
     backgroundColor: '#FFFFFF',
     borderRadius: 10,
     elevation: 3,
-      
+      overflow:'hidden'
     },
     text: {
       marginLeft: 10,
@@ -37,9 +40,14 @@ const styles = StyleSheet.create({
       color: '#000000',
     },
     image: {
-      width: '80%',
+      width: '100%',
       height: '95%',
+      // borderRadius:10
     },
+    pics:{
+      // overflow:'hidden',
+    // height:10
+    }
   });
 
 
@@ -70,14 +78,17 @@ const Call = () => {
       </Pressable>
 
       <Pressable style={styles.pressable} android_ripple={{ color: 'red' }} onPress={()=>{makePhoneCall('tel:101')}}>
+        
         <Image
           source={require('../assets/images/fire.png')}
           style={styles.image}
         />
+        
         <Text style={styles.text}>Fire Brigade</Text>
       </Pressable>
 
       <Pressable style={styles.pressable} android_ripple={{ color: 'red' }} onPress={()=>{makePhoneCall('tel:100')}}>
+       
         <Image
           source={require('../assets/images/police.jpg')}
           style={styles.image}
