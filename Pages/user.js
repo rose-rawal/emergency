@@ -83,7 +83,6 @@ const User = (userData) => {
           </TouchableOpacity>
         </ScrollView>
       </View>
-      </Application>
       {confirmLogOut && (
         <View style={styles.opac}>
           <View style={styles.modalContent}>
@@ -107,6 +106,7 @@ const User = (userData) => {
           </View>
         </View>
       )}
+    </Application>
   );
 };
 
