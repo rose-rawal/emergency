@@ -1,5 +1,5 @@
 import { Text, View, TouchableOpacity,StyleSheet,Dimensions } from "react-native"
-import {def} from './default.js'
+import {def,ser} from './default.js'
 import { useContext } from "react"
 
 
@@ -12,16 +12,20 @@ export const wid=Dimensions.get("window").width;
 
 const Application = ({children}) => {
   
-    const {page,setPage}=useContext(context)
+    const {page,setPage,isServer}=useContext(context)
   return (
     <View style={styles.main}>
     
         <View style={styles.child}>{children}</View>
-        <View style={styles.nav}>
+        {!isServer?<View style={styles.nav}>
         {def.map((n)=>{
             return(<TouchableOpacity  key={n.name} style={styles.ele} onPress={()=>{setPage(n.name)}}><Text style={styles.text}>{n.name}</Text></TouchableOpacity>)
         })}
-    </View>
+    </View>:<View style={styles.nav}>
+        {ser.map((n)=>{
+            return(<TouchableOpacity  key={n.name} style={styles.ele} onPress={()=>{setPage(n.name)}}><Text style={styles.text}>{n.name}</Text></TouchableOpacity>)
+        })}
+    </View>}
     
     </View>
   )
@@ -37,7 +41,7 @@ marginTop:40,
    
    paddingTop:20,
    backgroundColor:'#001133',
-height:hei*0.95
+height:hei*0.86
   },
   nav:{
     backgroundColor:"black",

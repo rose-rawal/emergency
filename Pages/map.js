@@ -77,7 +77,7 @@ const Map = (userData) => {
 
   return (
     <Application>
-    <View style={{marginTop:-20}} >
+    <View  >
     
     <MapView
     style={{width:"100%",height:"100%"}}

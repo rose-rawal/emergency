@@ -19,10 +19,10 @@ export default function App() {
     <Context>
       <SafeAreaView>
         <View>
-          {/* <Login /> */}
+          <Login />
           {/* <User/> */}
           {/* <Map/> */}
-          <Call/>
+          {/* <Call/> */}
         </View>
       </SafeAreaView>
     </Context>

@@ -16,3 +16,21 @@ export const def=[
         img:'data3',
     },
 ]
+export const ser=[
+    {
+        name:'Homa',
+        img:'data',
+    },
+    {
+        name:'Mapa',
+        img:'data3',
+    },
+    {
+        name:'Statsa',
+        img:'data2',
+    },
+    {
+        name:'Usera',
+        img:'data3',
+    },
+]

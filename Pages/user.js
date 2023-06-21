@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import {
   View,
   ScrollView,
@@ -11,8 +11,10 @@ import {
 } from "react-native";
 import Application from "../layout/application";
 import { getOneUser } from "../api/users";
+import context from "../context/maincontext";
 
 const User = (userData) => {
+  const {error,setError}=useContext(context);
   const [currentUser, setCurrentUser] = useState({});
   useEffect(() => {
     const getuser = async () => {
@@ -49,7 +51,7 @@ const User = (userData) => {
                 marginTop: -70,
               }}
             ></Image>
-            <Text style={styles.text}>{currentUser.name || "user"}</Text>
+            <Text style={styles.text}>{currentUser.name}</Text>
           </View>
           <View style={styles.container}>
             <Text style={styles.text}>Age: {currentUser.age}</Text>
@@ -89,20 +91,24 @@ const User = (userData) => {
             <Text style={{ color: "white" }}>
               DO YOU REALLY WANT TO LOG OUT?
             </Text>
+            <View style={styles.confirm}>
             <Button
               title="YES"
+  
               onPress={() => {
-                console.log("Logged Out");
+                setError({message:"Logged Out"})
                 setConfirmLogOut(false);
               }}
             />
-
+            <View style={{width:"30%"}}></View>
             <Button
               title="No"
+              
               onPress={() => {
                 setConfirmLogOut(false);
               }}
             />
+            </View>
           </View>
         </View>
       )}
@@ -124,6 +130,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     backgroundColor: "#4F709C",
   },
+
   text: {
     fontSize: 18,
     padding: 10,
@@ -139,7 +146,8 @@ const styles = StyleSheet.create({
 
     backgroundColor: "black",
     width: "70%",
-    height: "20%",
+    paddingVertical:30,
+    // height: "20%",
     position: "absolute",
     justifyContent: "center",
     alignItems: "center",
@@ -154,4 +162,9 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     position: "absolute",
   },
+  confirm:{
+    flex:1,
+    flexDirection:"row",
+    marginTop:20,
+  }
 });

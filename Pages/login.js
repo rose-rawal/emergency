@@ -13,13 +13,15 @@ import Input from "../snips/input";
 import context from "../context/maincontext";
 import Call from "./call";
 import Map from "./map";
+
 import { getUser, addUser, login } from "../api/users";
 import axios from "axios";
 import Statistics from "./statistics";
 import Users from "./user";
-import Error from "./Error";
+
 import { addServer, loginServer } from "../api/servers";
 import { hei, wid } from "../layout/application";
+import Home from "./server/home";
 
 const Login = () => {
   const [data, setData] = useState("");
@@ -73,21 +75,22 @@ const Login = () => {
     if (!isServer) {
       success = await login(logData);
     } else {
+      console.log("here at server")
       success = await loginServer(logData);
     }
 
     if (success.success && isServer) {
-      // console.log(success)
+      console.log(success)
       setUserData(success.found._id);
-      // console.log("userdata", userData)
+      // console.log("userdata is", userData, "this")
       setError({ ...error, message: "Logged In" });
-      setPage("User");
+      setPage("Home");
       setLogData({
         Email: "",
         Password: "",
       });
     } else if (success.success && !isServer) {
-      // console.log(success)
+      console.log(success)
       setUserData(success.found._id);
       // console.log("userdata", userData)
       setError({ ...error, message: "Logged In" });
@@ -145,25 +148,25 @@ const Login = () => {
   return (
     //server Page
     <View>
-      <ScrollView>
+      
         {isServer ? (
           <>
             {error.message === "Logged In" ? (
               page === "Home" ? (
-                <Call />
+                <Home/>
               ) : //page==="Map"?<Map userData={userData}/>:
               page === "Stats" ? (
                 <Statistics />
               ) : page === "User" ? (
                 <Users />
               ) : (
-                <Error />
+                <></>
               )
             ) : (
               <View style={styles.mainContainer}>
                 <ImageBackground
                   source={require("../assets/images/HelpEmerge.png")}
-                  resizeMode="cover"
+                  resizeMode="stretch"
                   imageStyle={styles.backgroundImage}
                 >
                   {sign ? (
@@ -175,7 +178,7 @@ const Login = () => {
                             style={styles.logo}
                           />
                           <Text style={styles.headerText}>
-                            Emergency System
+                            Emergency Server
                           </Text>
                         </View>
 
@@ -220,7 +223,7 @@ const Login = () => {
                           source={require("../assets/images/logo.png")}
                           style={styles.logo}
                         />
-                        <Text style={styles.headerText}>Emergency System</Text>
+                        <Text style={styles.headerText}>Emergency Server</Text>
                       </View>
 
                       <View style={styles.inputContainer}>
@@ -293,10 +296,11 @@ const Login = () => {
               ) : page === "User" ? (
                 <Users userData={userData} />
               ) : (
-                <Error />
+                <></>
               )
             ) : (
               <View style={styles.mainContainer}>
+              
                 <ImageBackground
                   source={require("../assets/images/HelpEmerge.png")}
                   resizeMode="cover"
@@ -411,19 +415,20 @@ const Login = () => {
                     </ScrollView>
                   )}
                 </ImageBackground>
+                
               </View>
             )}
           </>
         )}
-      </ScrollView>
+      
     </View>
   );
 };
 const styles = StyleSheet.create({
   mainContainer: {
-    marginTop: 40,
+    // marginTop: 40,
     backgroundColor: "#004f99",
-    height: hei + 25,
+    height: hei,
   },
   container: {
     display: "flex",

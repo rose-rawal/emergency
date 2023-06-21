@@ -30,7 +30,7 @@ export const addServer=async (dat)=>{
     }
 }
 export const loginServer=async({Email,Password})=>{
-    // console.log(Email,Password)
+    console.log("Hello",Email,Password)
     try{
         const res=await serverInstance.post('/login',{
             email:Email,
