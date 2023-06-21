@@ -52,10 +52,12 @@ async function login(req,res){
         message: "Email not found",
         })
     }
+
     const pass=await decrypt(password,found.password)
-    console.log(pass)
+    // console.log("password;",pass)
     
     if(found.email===email){
+        console.log(found)
         return res.json({
             success:true,
             message: "user found",
