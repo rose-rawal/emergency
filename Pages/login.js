@@ -22,6 +22,8 @@ import Users from "./user";
 import { addServer, loginServer } from "../api/servers";
 import { hei, wid } from "../layout/application";
 import Home from "./server/home";
+import ServMap from "./server/servMap";
+import Stats from "./server/stats";
 
 const Login = () => {
   const [data, setData] = useState("");
@@ -154,9 +156,9 @@ const Login = () => {
             {error.message === "Logged In" ? (
               page === "Home" ? (
                 <Home/>
-              ) : //page==="Map"?<Map userData={userData}/>:
+              ) : page==="Map"?<ServMap/>:
               page === "Stats" ? (
-                <Statistics />
+                <Stats />
               ) : page === "User" ? (
                 <Users />
               ) : (

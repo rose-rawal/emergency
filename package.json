@@ -14,17 +14,18 @@
     "@fortawesome/react-native-fontawesome": "^0.3.0",
     "axios": "^1.4.0",
     "expo": "~48.0.15",
+    "expo-linear-gradient": "~12.1.2",
     "expo-location": "~15.1.1",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
     "react-native": "0.71.8",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-maps": "1.3.2",
+    "react-native-push-notification": "^8.1.1",
     "react-native-responsive-image": "^2.3.1",
     "react-native-svg": "13.4.0",
     "react-native-vector-icons": "^9.2.0",
-    "socket.io-client": "^4.6.2",
-    "expo-linear-gradient": "~12.1.2"
+    "socket.io-client": "^4.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

@@ -7,10 +7,7 @@ export const def=[
         name:'Map',
         img:'data3',
     },
-    {
-        name:'Stats',
-        img:'data2',
-    },
+    
     {
         name:'User',
         img:'data3',
@@ -18,19 +15,19 @@ export const def=[
 ]
 export const ser=[
     {
-        name:'Homa',
+        name:'Home',
         img:'data',
     },
     {
-        name:'Mapa',
+        name:'Map',
         img:'data3',
     },
     {
-        name:'Statsa',
+        name:'Stats',
         img:'data2',
     },
     {
-        name:'Usera',
+        name:'User',
         img:'data3',
     },
 ]
