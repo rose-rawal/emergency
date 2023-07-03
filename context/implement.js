@@ -36,8 +36,9 @@ const Context=({children})=>{
         Email:"rooserwl@gmail.com",
         Age:21
     }])
+    const [data,setData]=useState("");
     return(
-        <context.Provider value={{newUser,setNewUser,allUser,setAllUser,page,setPage,error,setError,isServer,setIsServer,serverUser,setServerUser,socket}}>
+        <context.Provider value={{data,setData,newUser,setNewUser,allUser,setAllUser,page,setPage,error,setError,isServer,setIsServer,serverUser,setServerUser,socket}}>
             {children}
         </context.Provider>
     )

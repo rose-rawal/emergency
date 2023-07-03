@@ -48,10 +48,7 @@ const Map = (userData) => {
       console.log("user data:",userData.userData)
       const abc=await getOneUser(_id=userData.userData)
       setCurrentUser(abc)
-      setTimeout(()=>{
-
-        console.log("fetches",currentUser)
-      },1000)
+      
     }
     data()
   },[])
@@ -72,7 +69,7 @@ const Map = (userData) => {
     })();
   }, []);
   const handlePress=()=>{
-    socket.emit('hello',pin)
+    socket.emit('hello',{...pin,...currentUser})
   }
 
   return (
