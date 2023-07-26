@@ -4,6 +4,7 @@ import {decrypt} from '../utils/decrypt.js'
 import {encrypt} from '../utils/encrypt.js'
 import serverSchema from '../models/serverSchema.js'
 const serverrouter = Router()
+
 async function registerUser(req,res){
     const {name,password,email,phone}=req.body
     if(!name||!password||!email||!phone){
@@ -75,7 +76,7 @@ serverrouter.post('/login',login)
 const getOneUser=async(req,res)=>{
     const id=req.params.id;
     // console.log()
-    const user=await userSchema.findOne({
+    const user=await serverSchema.findOne({
         _id:id
     })
     res.json({
@@ -85,7 +86,7 @@ const getOneUser=async(req,res)=>{
 serverrouter.get('/all/:id',getOneUser)
 
 const getAllUser=async(req,res)=>{
-    const data =await userSchema.find()
+    const data =await serverSchema.find()
     return res.json(data)
 }
 serverrouter.get('/all',getAllUser);
@@ -94,7 +95,7 @@ const updateUser=async(req,res)=>{
     const {name,email,address,age,phone}=req.body;
  
     
-    const change=await userSchema.findOneAndUpdate({
+    const change=await serverSchema.findOneAndUpdate({
         _id:req.params.id
     },{
         name,email,address,age,phone
@@ -110,7 +111,7 @@ serverrouter.put('/update/:id',updateUser);
 
 const deleteUser=async(req,res)=>{
     
-    const deleted=await userSchema.findOneAndDelete({
+    const deleted=await serverSchema.findOneAndDelete({
         _id:req.params.id
     })
     return res.json({
