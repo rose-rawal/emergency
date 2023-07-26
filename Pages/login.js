@@ -24,6 +24,7 @@ import { hei, wid } from "../layout/application";
 import Home from "./server/home";
 import ServMap from "./server/servMap";
 import Stats from "./server/stats";
+import ServerUser from "./server/serveruser";
 
 const Login = () => {
   const [data, setData] = useState("");
@@ -66,6 +67,8 @@ const Login = () => {
 
   const [sign, setSign] = useState(true);
   const handleLogin = async () => {
+
+
     // allUser.map(n=>{
     //   if(n.Name===logData.Name && n.Password===logData.Password){
     //     console.log("Hell")
@@ -107,6 +110,8 @@ const Login = () => {
         setFals(false);
       }, 3000);
     }
+  
+
   };
   const handleSignUp = () => {
     if (!isServer) {
@@ -160,7 +165,7 @@ const Login = () => {
               page === "Stats" ? (
                 <Stats />
               ) : page === "User" ? (
-                <Users />
+                <ServerUser userData={userData}/>
               ) : (
                 <></>
               )

@@ -12,8 +12,8 @@ const ServMap = () => {
       <MapView
     style={{width:"100%",height:"100%"}}
   initialRegion={{
-    latitude: 27.676831,
-    longitude: 85.332443,
+    latitude: data.latitude,
+    longitude: data.longitude,
     latitudeDelta: 0.0010,
     longitudeDelta: 0.0010,
 
