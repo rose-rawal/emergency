@@ -4,17 +4,19 @@ import def from '../layout/default'
 import Application from "../layout/application"
 import { useState,useEffect, useContext } from "react"
 import * as Location from 'expo-location';
+
 import { getOneUser } from "../api/users"
 import context from "../context/maincontext"
 const Map = (userData) => {
   // const [isConnected, setIsConnected] = useState(socket.connected);
   // const [fooEvents, setFooEvents] = useState([]);
   const {socket} =useContext(context)
-
+  
   // useEffect(() => {
   //   function onConnect() {
   //     setIsConnected(true);
   //   }
+
 
   //   function onDisconnect() {
   //     setIsConnected(false);
@@ -31,12 +33,15 @@ const Map = (userData) => {
   //   return () => {
   //     socket.off('connect', onConnect);
   //     socket.off('disconnect', onDisconnect);
-  //     socket.off('foo', onFooEvent);
+  //     socket.off('foo', onFooEvent);czxczxc
   //   };
   // }, []);
   // console.log("data req",userData)
   socket.on('hello',msg=>console.log(msg));
   const [currentUser,setCurrentUser]=useState({})
+ 
+
+
   // console.log("data",userData)
   let location;
   const [pin,setPin]=useState({
@@ -47,7 +52,7 @@ const Map = (userData) => {
     const data=async()=>{
       console.log("user data:",userData.userData)
       const abc=await getOneUser(_id=userData.userData)
-      setCurrentUser(abc)
+        setCurrentUser(abc)
       
     }
     data()
@@ -61,14 +66,30 @@ const Map = (userData) => {
         return;
       }
 
+     
       location = await Location.getCurrentPositionAsync({});
       setPin({
         latitude:location.coords.latitude,
         longitude:location.coords.longitude
       })
-    })();
+//      const token ='affce4d62ddbcd';
+//       const url =`https://ipinfo.io/json?token=${token}`;
+//       let locateResp = await fetch(url);
+//       let data = await locateResp.json();
+//       setCityName(data);
+//         affectedArea= data.region;
+//         setCurrentUser((prevUser)=>
+//   {
+//     return({...prevUser,affectedArea});
+// }
+//     )
+  })();
   }, []);
-  const handlePress=()=>{
+  
+
+  const sosPress=()=>{
+    console.log-("socket emit", currentUser)
+
     socket.emit('hello',{...pin,...currentUser})
   }
 
@@ -106,7 +127,7 @@ const Map = (userData) => {
 </MapView>
 
 </View>
-<TouchableOpacity onPress={()=>{handlePress()}} style={{position:'absolute',right:10,bottom:20,backgroundColor:'black',paddingHorizontal:30,paddingVertical:10,borderRadius:20}}><Text style={{color:"white",fontSize:20}}>SOS</Text></TouchableOpacity>
+<TouchableOpacity onPress={sosPress} style={{position:'absolute',right:10,bottom:20,backgroundColor:'black',paddingHorizontal:30,paddingVertical:10,borderRadius:20}}><Text style={{color:"white",fontSize:20}}>SOS</Text></TouchableOpacity>
 </Application>
   )
 }

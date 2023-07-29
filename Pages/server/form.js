@@ -1,19 +1,45 @@
 import { View, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { delStats } from '../../api/statistics';
+import { storeStats } from '../../api/statistics';
+
 import context from '../../context/maincontext'
 function Form(props) {
+const [change,setChange] = useState('');
+const [message,setMessage] = useState();   
+const {setPage,setShowForm} = useContext(context);
+    const msg= props.data;
+    let affectedArea;
+    const phone = msg.phone.toString();
+ 
+    const handleMap = () => {
+      console.log("Here the message is",affectedArea);
 
-    const {setPage} = useContext(context);
-    const age = props.data.age.toString();
-    const phone = props.data.phone.toString();
-    
-    const handleSubmit = () => {
-        // Handle form submission here
+   
+       
+      // Handle form submission here
         // You can access the form values (name, age, email, phone) and perform necessary actions
         setPage("Map")
-        console.log('Checked Service:', props.data.age );
+        console.log('Checked Service:', props.data );
       };
-  return (
+  function changeHandler(text)
+  {
+setChange(text);
+
+console.log(text);
+  }
+  function handleDelete(){
+    affectedArea=change;
+
+    console.log("Saved the record")
+    setShowForm(false);
+    storeStats({...msg,affectedArea});
+
+    // delStats();
+    alert("submitted");
+
+  }
+      return (
     <View style={styles.container}>
       <TextInput
         style={styles.input}
@@ -23,9 +49,9 @@ function Form(props) {
       />
       <TextInput
         style={styles.input}
-       
-        value={age}
-        editable={false}
+       onChangeText={changeHandler}
+        placeholder='City Name'
+        editable={true}
       />
       <TextInput
         style={styles.input}
@@ -39,11 +65,14 @@ function Form(props) {
         value={phone}
         editable={false}
       />
-      
-      <TouchableOpacity style={styles.buttonContainer} onPress={handleSubmit}>
-       <Text>Checksasas</Text>
+    <View style={styles.butts}>  
+      <TouchableOpacity  style={styles.buttonContainer} onPress={handleMap}>
+       <Text>CheckMap</Text>
       </TouchableOpacity>
-      
+      <TouchableOpacity  style={styles.buttonContainer} onPress={handleDelete}>
+       <Text>Submit</Text>
+      </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -55,6 +84,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 20,
         backgroundColor: '#f5f5f5',
+      },
+      butts:{
+display:"flex",
+flexDirection:'row',
       },
       input: {
         width: '100%',
@@ -77,7 +110,7 @@ const styles = StyleSheet.create({
         elevation: 2,
       },
       buttonContainer: {
-        width: '100%',
+        marginRight:90,
         borderRadius: 10,
         overflow: 'hidden',
         justifyContent: 'center',

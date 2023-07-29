@@ -41,7 +41,7 @@ marginTop:40,
    
    paddingTop:20,
    backgroundColor:'#001133',
-height:hei*0.86
+height:hei*0.95
   },
   nav:{
     backgroundColor:"black",

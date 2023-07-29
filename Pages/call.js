@@ -96,7 +96,7 @@ const Call = () => {
         <Text style={styles.text}>Police Services</Text>
       </Pressable>
 
-      <Pressable style={styles.pressable} android_ripple={{ color: 'red' }} onPress={()=>{makePhoneCall('tel:6969 ')}}>
+      <Pressable style={styles.pressable} android_ripple={{ color: 'red' }} onPress={()=>{makePhoneCall('tel:9841007074 ')}}>
         <Image
           source={require('../assets/images/animals.png')}
           style={styles.image}
