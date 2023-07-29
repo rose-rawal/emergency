@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import router from "./routes/index.js";
 import cors from 'cors';
 import serverrouter from "./routes/server.js";
+import statsRoute from "./routes/statistics.js";
 import http from 'http';
 import { Server} from "socket.io";
 
@@ -25,6 +26,7 @@ app.use(express.json())
 app.use(cors({origin: true, credentials: true}))
 app.use('/',router)
 app.use('/server/',serverrouter)
+app.use('/statistics/',statsRoute);
 // app.use('/hello',router)
 
 app.post('/hello',(req,res)=>{

@@ -1,8 +1,8 @@
-import {Router} from 'express'
+ import {Router} from 'express'
 import userSchema from '../models/userSchema.js'
 import {decrypt} from '../utils/decrypt.js'
 import {encrypt} from '../utils/encrypt.js'
-import serverSchema from '../models/serverSchema.js'
+import { serverSchema } from '../models/serversSchema.js'
 const serverrouter = Router()
 
 async function registerUser(req,res){
@@ -25,7 +25,7 @@ async function registerUser(req,res){
     }
     const user=serverSchema({
         name,password:await encrypt(password),email,phone
-    })
+    }) //creating a new instance of a database entity
     await user.save();
     const data=await encrypt(password);
     return res.json({
