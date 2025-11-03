@@ -5,9 +5,9 @@ import cors from "cors";
 import http from "http";
 import { Server } from "socket.io";
 
-import router from "../routes/index.js";
-import serverrouter from "../routes/server.js";
-import statsRoute from "../routes/statistics.js";
+import router from "./routes/index.js";
+import serverrouter from "./routes/server.js";
+import statsRoute from "./routes/statistics.js";
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "*", // or specific domains
+        origin: "*",
         methods: ["GET", "POST"]
     }
 });
@@ -50,7 +50,6 @@ io.on("connection", (socket) => {
     });
 });
 
-// Start combined server
 const PORT = 3030;
 server.listen(PORT, () => {
     console.log(`Server (and Socket.IO) running on port ${PORT}`);
